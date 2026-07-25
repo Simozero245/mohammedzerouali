@@ -404,7 +404,7 @@ h2 em, h1 em, p em {
 .float {
   margin: 0;
   position: relative;
-  flex: 0 0 36%;
+  flex: 0 0 28.5%;
   border-radius: 16px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -450,22 +450,32 @@ h2 em, h1 em, p em {
   background: linear-gradient(to top, rgba(8, 6, 12, 0.92), transparent);
 }
 
-/* left card, middle card raised, right card — the fan */
+/* four cards fanned like a held hand: rotation grows outwards, the two
+   inner cards ride higher, each card laps the one to its left */
+.float-5 {
+  --rot: -8deg;
+  z-index: 1;
+  margin-right: -2.5%;
+}
+
 .float-1 {
-  --rot: -5deg;
-  z-index: 3;
+  --rot: -3deg;
+  --lift: -26px;
+  z-index: 2;
+  margin-inline: -2.5%;
 }
 
 .float-4 {
-  --rot: 1deg;
-  --lift: -34px;
-  margin-inline: -4%;
-  z-index: 4;
+  --rot: 3deg;
+  --lift: -26px;
+  z-index: 3;
+  margin-inline: -2.5%;
 }
 
 .float-2 {
-  --rot: 5deg;
-  z-index: 3;
+  --rot: 8deg;
+  z-index: 4;
+  margin-left: -2.5%;
 }
 
 .float-2 img { object-position: center; }
@@ -672,16 +682,45 @@ section { padding-block: var(--gutter); }
   border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
+/* a role you can state without stating the work */
+.role-nda {
+  background: rgba(247, 166, 37, 0.12);
+  color: var(--amber);
+  border: 1px solid rgba(247, 166, 37, 0.32);
+}
+
+/* named-client lockup — the mark is a mark, so the name is set beside it
+   rather than left to be guessed */
+.case-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.case-brand img {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.9;
+}
+
+.case-brand b {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.case-light .case-brand img { filter: none; }
+
 /* metrics */
 
+/* auto-fit, not a hard 3 columns: this block now lives in the narrower
+   half of a split case and has to fold on its own */
 .metrics {
   display: grid;
   gap: 1.5rem;
   padding-block: 0.5rem;
-}
-
-@media (min-width: 700px) {
-  .metrics { grid-template-columns: repeat(3, 1fr); }
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
 }
 
 .metrics div {
